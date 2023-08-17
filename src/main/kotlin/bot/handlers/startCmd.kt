@@ -15,13 +15,14 @@ fun startHandler(bot: Bot, message: Message) {
         bot.sendMessage(chatId = ChatId.fromId(-855224636), text = text)
     }
 }
-
-fun approveHandler(bot: Bot, message: CallbackQuery) {
+fun callbackHandler(bot: Bot, message: CallbackQuery) {
+    val (buttonId, messageId) = message.data.split(";")
     val userId = message.from.id
     val userName = message.from.username
     val chatId = message.message?.chat?.id
     val text = """
-        Была нажата кнопка "${message.data}"
+        Была нажата кнопка "$buttonId"
+        messageId = $messageId
         userId = $userId
         userName = $userName
         chatId = $chatId

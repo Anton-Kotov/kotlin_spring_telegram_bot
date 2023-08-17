@@ -25,7 +25,6 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	implementation("io.github.kotlin-telegram-bot.kotlin-telegram-bot:telegram:6.1.0")
-	implementation("io.github.cdimascio:java-dotenv:5.2.0")
 }
 
 tasks.withType<KotlinCompile> {

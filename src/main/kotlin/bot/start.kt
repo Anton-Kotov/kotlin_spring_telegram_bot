@@ -5,9 +5,11 @@ import com.github.kotlintelegrambot.dispatch
 import com.github.kotlintelegrambot.dispatcher.callbackQuery
 import com.github.kotlintelegrambot.dispatcher.text
 import com.github.kotlintelegrambot.echo.handlers.*
-import io.github.cdimascio.dotenv.Dotenv
+import org.springframework.beans.factory.annotation.Value
+import org.springframework.stereotype.Component
 
-class Bot(telegramToken: String) {
+@Component
+class Bot(@Value("\${bot.token}") telegramToken: String) {
     val bot = bot {
         token = telegramToken
         dispatch {
@@ -15,18 +17,9 @@ class Bot(telegramToken: String) {
                 startHandler(bot, message)
             }
             callbackQuery {
-                approveHandler(bot, callbackQuery)
+                callbackHandler(bot, callbackQuery)
             }
         }
 
     }
-
-
-}
-
-fun main() {
-    val dotenv = Dotenv.load()
-    val telegramToken = dotenv["TELEGRAM_TOKEN"].toString()
-    val bot = Bot(telegramToken)
-    bot.bot.startPolling()
 }
