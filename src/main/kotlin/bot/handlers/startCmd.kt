@@ -7,12 +7,13 @@ import com.github.kotlintelegrambot.entities.Message
 
 fun startHandler(bot: Bot, message: Message) {
     if (message.text == "/start") {
-        println(message.from?.username)
-        println(message.from?.id)
         val text = """
             Вас приветствует бот компании Яндекс.
         """.trimIndent()
-        bot.sendMessage(chatId = ChatId.fromId(-855224636), text = text)
+        val userId = message.from?.id
+        if (userId != null) {
+            bot.sendMessage(chatId = ChatId.fromId(userId), text = text)
+        }
     }
 }
 fun callbackHandler(bot: Bot, message: CallbackQuery) {

@@ -25,7 +25,8 @@ class Application (private val botProperties: BotProperties,
 		val currentChatId = botProperties.currentChatId
 		val keyboardMarkup = keyboard(postData)
 
-		botTelegram.bot.sendMessage(chatId = ChatId.fromId(currentChatId), text = postData.message, replyMarkup = keyboardMarkup)
+		botTelegram.bot.sendMessage(chatId = ChatId.fromId(currentChatId),
+			text = postData.message, replyMarkup = keyboardMarkup)
 		return ResponseEntity.ok("Данные успешно получены!")
 	}
 	companion object {
