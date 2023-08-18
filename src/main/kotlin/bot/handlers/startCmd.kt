@@ -21,6 +21,7 @@ fun callbackHandler(bot: Bot, message: CallbackQuery) {
     val userId = message.from.id
     val userName = message.from.username
     val chatId = message.message?.chat?.id
+    val botMessageId = message.message?.messageId
     val text = """
         Была нажата кнопка "$buttonId"
         messageId = $messageId
@@ -29,4 +30,7 @@ fun callbackHandler(bot: Bot, message: CallbackQuery) {
         chatId = $chatId
     """.trimIndent()
     bot.sendMessage(chatId = ChatId.fromId(userId), text = text)
+    if (chatId != null && buttonId == "approve") {
+        bot.editMessageText(ChatId.fromId(chatId), botMessageId, text = "Идет обработка нажатия", replyMarkup = null)
+    }
 }
