@@ -2,7 +2,7 @@ package server
 
 import BotProperties
 import com.github.kotlintelegrambot.echo.Bot
-import com.github.kotlintelegrambot.echo.keyboards.keyboard
+import com.github.kotlintelegrambot.echo.keyboards.inlineKeyboard
 import com.github.kotlintelegrambot.entities.ChatId
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.PostMapping
@@ -17,7 +17,7 @@ class Controller (private val botProperties: BotProperties,
     fun sendMessage(@RequestBody postData: PostData): ResponseEntity<String> {
 
         val currentChatId = botProperties.currentChatId
-        val keyboardMarkup = keyboard(postData)
+        val keyboardMarkup = inlineKeyboard(postData)
 
         botTelegram.bot.sendMessage(
             chatId = ChatId.fromId(currentChatId),

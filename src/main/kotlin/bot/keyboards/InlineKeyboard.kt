@@ -5,7 +5,7 @@ import com.github.kotlintelegrambot.entities.keyboard.InlineKeyboardButton
 import server.PostData
 
 
-fun keyboard(data: PostData): InlineKeyboardMarkup {
+fun inlineKeyboard(data: PostData): InlineKeyboardMarkup {
     val list = mutableListOf<InlineKeyboardButton>()
     for (button in data.buttons) {
         val label = button.getOrDefault("label", "")

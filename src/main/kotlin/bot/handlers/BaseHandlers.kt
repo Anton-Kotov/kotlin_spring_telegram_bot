@@ -30,8 +30,10 @@ fun callbackHandler(bot: Bot, message: CallbackQuery) {
         chatId = $chatId
     """.trimIndent()
     bot.sendMessage(chatId = ChatId.fromId(userId), text = text)
-    // меняем сообщение при нажатии на кнопку approve
-    if (chatId != null && buttonId == "approve") {
-        bot.editMessageText(ChatId.fromId(chatId), botMessageId, text = "Идет обработка нажатия", replyMarkup = null)
+    val messageText = message.message?.text
+    val newTextMessage = "$messageText\n\nкнопка - $buttonId была нажата"
+
+    if (chatId != null) {
+        bot.editMessageText(ChatId.fromId(chatId), botMessageId, text = newTextMessage, replyMarkup = null)
     }
 }
